@@ -6,6 +6,6 @@ COPY . .
 
 RUN bun install
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["bun", "src/index.ts"]
