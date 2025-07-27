@@ -50,9 +50,8 @@ app.get('/games', (c) => {
   return c.json(rows.map(row => row.name))
 })
 
-// ✅ Start server on 0.0.0.0:8080
-serve({
+export default {
   hostname: '0.0.0.0',
   port: 8080,
-  fetch: app.fetch,
-})
+  fetch: app.fetch
+}
