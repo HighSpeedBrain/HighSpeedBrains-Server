@@ -2,10 +2,11 @@
   "name": "Server",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "start" : "bun src/index.ts",
+    "start": "bun src/index.ts",
     "build": "tsc"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "hono": "^4.8.9"
   },
   "devDependencies": {
