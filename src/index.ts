@@ -3,6 +3,7 @@ import { serve } from 'bun'
 import { Database } from 'bun:sqlite'
 import { existsSync, mkdirSync } from 'fs'
 import { join } from 'path'
+import cors from 'cors'
 
 // ✅ Ensure ../db folder exists relative to this file
 const dbDir = join(import.meta.dir, '../db')
@@ -49,6 +50,12 @@ app.get('/games', (c) => {
   const rows = db.query<{ name: string }, []>('SELECT name FROM games').all()
   return c.json(rows.map(row => row.name))
 })
+
+app.use('*', cors({
+  origin: 'https://highspeedbrains.up.railway.app', // or your domain
+  allowMethods: ['GET', 'POST']
+}));
+
 
 export default {
   hostname: '0.0.0.0',
