@@ -5,6 +5,7 @@ import { existsSync, mkdirSync } from 'fs'
 import { join } from 'path'
 import { cors } from 'hono/cors'
 
+
 // ✅ Ensure ../db folder exists relative to this file
 const dbDir = join(import.meta.dir, '../db')
 const dbPath = join(dbDir, 'db.db')
@@ -33,6 +34,11 @@ insertGame.run('Schulte',"schulte")
 
 const app = new Hono()
 
+app.use('*', cors({
+  origin: 'https://highspeedbrains.up.railway.app', // or your domain
+  allowMethods: ['GET', 'POST']
+}));
+
 // ✅ Route: Serve HTML file from ./html based on query param `file`
 app.get('/html', async (c) => {
   const file = c.req.query('file')
@@ -51,10 +57,7 @@ app.get('/games', (c) => {
   return c.json(rows.map(row => row.name))
 })
 
-app.use('*', cors({
-  origin: 'https://highspeedbrains.up.railway.app', // or your domain
-  allowMethods: ['GET', 'POST']
-}));
+
 
 
 export default {
