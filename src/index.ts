@@ -3,7 +3,7 @@ import { serve } from 'bun'
 import { Database } from 'bun:sqlite'
 import { existsSync, mkdirSync } from 'fs'
 import { join } from 'path'
-const cors = require('cors')
+import { cors } from 'hono/cors'
 
 // ✅ Ensure ../db folder exists relative to this file
 const dbDir = join(import.meta.dir, '../db')
